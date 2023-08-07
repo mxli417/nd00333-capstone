@@ -32,7 +32,7 @@ def main():
     run.log("n_estimators:", np.int(args.n_estimators))
 
     # get dataset
-    url = "https://github.com/mxli417/nd00333-capstone/blob/60c04db4bff6057f4ae90ba350a048a7a9e69f48/data/heart_failure_clinical_records_dataset.csv"
+    url = "https://raw.githubusercontent.com/mxli417/nd00333-capstone/60c04db4bff6057f4ae90ba350a048a7a9e69f48/data/heart_failure_clinical_records_dataset.csv"
     heartfail_data = pd.read_csv(url)
     
     # generate a stratified train/test split to account for data imbalance
