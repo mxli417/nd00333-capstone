@@ -1,0 +1,130 @@
+2023-08-08 17:12:26.192 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 17:12:26.218 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 17:12:26.242 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:12:27.008 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=765.86[ms]
+2023-08-08 17:12:27.321 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=1102.18[ms]
+2023-08-08 17:12:27.321 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:55 - ActivityStarted: DownloadModel
+2023-08-08 17:12:29.068 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:190 - Feature sweeping enabled: False
+2023-08-08 17:12:29.080 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:191 - Feature sweeping timeout: 86400
+2023-08-08 17:12:31.300 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:89 - ActivityCompleted: Activity=DownloadModel, HowEnded=Success, Duration=3978.47[ms]
+2023-08-08 17:12:31.303 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=5110.82[ms]
+2023-08-08 17:14:19.268 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 17:14:19.294 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 17:14:19.325 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:14:19.964 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=638.84[ms]
+2023-08-08 17:14:20.176 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=881.95[ms]
+2023-08-08 17:14:20.176 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:55 - ActivityStarted: DownloadModel
+2023-08-08 17:14:21.879 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:190 - Feature sweeping enabled: False
+2023-08-08 17:14:21.884 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:191 - Feature sweeping timeout: 86400
+2023-08-08 17:14:22.025 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:89 - ActivityCompleted: Activity=DownloadModel, HowEnded=Success, Duration=1848.93[ms]
+2023-08-08 17:14:22.026 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=2757.6[ms]
+2023-08-08 17:15:05.091 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 17:15:05.128 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 17:15:05.165 - CRITICAL - 39614 - azureml.train.automl.run.log_traceback:227 - Type: ArgumentInvalid
+Class: OnnxConvertException
+Message: OnnxConvertException:
+	Message: Requested an ONNX compatible model but the run has ONNX compatibility disabled.
+	InnerException: None
+	ErrorResponse 
+{
+    "error": {
+        "code": "UserError",
+        "message": "Requested an ONNX compatible model but the run has ONNX compatibility disabled.",
+        "target": "onnx_compatible",
+        "inner_error": {
+            "code": "BadArgument",
+            "inner_error": {
+                "code": "ArgumentInvalid"
+            }
+        }
+    }
+}
+Traceback:
+  File "telemetry_activity_logger.py", line 58, in _log_activity
+    yield
+  File "run.py", line 622, in _get_best_child_run
+    raise OnnxConvertException._with_error(
+
+ExceptionTarget: onnx_compatible
+2023-08-08 17:15:05.166 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Failure, Duration=37.61[ms]
+2023-08-08 17:15:05.166 - CRITICAL - 39614 - azureml.train.automl.run.log_traceback:227 - Type: ArgumentInvalid
+Class: OnnxConvertException
+Message: OnnxConvertException:
+	Message: Requested an ONNX compatible model but the run has ONNX compatibility disabled.
+	InnerException: None
+	ErrorResponse 
+{
+    "error": {
+        "code": "UserError",
+        "message": "Requested an ONNX compatible model but the run has ONNX compatibility disabled.",
+        "target": "onnx_compatible",
+        "inner_error": {
+            "code": "BadArgument",
+            "inner_error": {
+                "code": "ArgumentInvalid"
+            }
+        }
+    }
+}
+Traceback:
+  File "telemetry_activity_logger.py", line 58, in _log_activity
+    yield
+  File "run.py", line 707, in get_output
+    curr_run, model_name = self._get_best_child_run(
+  File "run.py", line 622, in _get_best_child_run
+    raise OnnxConvertException._with_error(
+
+ExceptionTarget: onnx_compatible
+2023-08-08 17:15:05.167 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Failure, Duration=75.38[ms]
+2023-08-08 17:15:50.236 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 17:15:50.266 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:15:50.697 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=431.11[ms]
+2023-08-08 17:15:50.897 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=661.22[ms]
+2023-08-08 17:16:15.279 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 17:16:15.303 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:16:15.813 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=510.08[ms]
+2023-08-08 17:16:15.975 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=696.2[ms]
+2023-08-08 17:16:31.995 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 17:16:32.019 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:16:32.641 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=621.59[ms]
+2023-08-08 17:16:32.884 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=888.41[ms]
+2023-08-08 17:19:10.785 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 17:19:10.809 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:19:10.968 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=158.91[ms]
+2023-08-08 17:19:11.032 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=246.42[ms]
+2023-08-08 17:19:17.701 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 17:19:17.726 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:19:17.914 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=188.06[ms]
+2023-08-08 17:19:17.991 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=289.6[ms]
+2023-08-08 17:20:54.706 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 17:20:54.732 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 17:20:54.896 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=164.56[ms]
+2023-08-08 17:20:55.011 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=305.32[ms]
+2023-08-08 18:32:05.442 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 18:32:05.481 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 18:32:05.518 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 18:32:05.710 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=192.67[ms]
+2023-08-08 18:32:05.799 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=318.18[ms]
+2023-08-08 18:32:05.807 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:55 - ActivityStarted: DownloadModel
+2023-08-08 18:32:06.399 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:190 - Feature sweeping enabled: False
+2023-08-08 18:32:06.406 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:191 - Feature sweeping timeout: 86400
+2023-08-08 18:32:06.472 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:89 - ActivityCompleted: Activity=DownloadModel, HowEnded=Success, Duration=664.74[ms]
+2023-08-08 18:32:06.482 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=1039.28[ms]
+2023-08-08 18:32:10.018 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 18:32:10.054 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 18:32:10.201 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=147.36[ms]
+2023-08-08 18:32:10.271 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=253.12[ms]
+2023-08-08 18:43:15.865 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 18:43:15.899 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetOutput
+2023-08-08 18:43:15.937 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 18:43:16.082 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=144.85[ms]
+2023-08-08 18:43:16.152 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=253.03[ms]
+2023-08-08 18:43:16.164 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:55 - ActivityStarted: DownloadModel
+2023-08-08 18:43:16.720 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:190 - Feature sweeping enabled: False
+2023-08-08 18:43:16.733 - INFO - 39614 - azureml.automl.runtime.featurization.data_transformer.__init__:191 - Feature sweeping timeout: 86400
+2023-08-08 18:43:16.855 - INFO - 39614 - azureml.train.automl._model_download_utilities._log_activity:89 - ActivityCompleted: Activity=DownloadModel, HowEnded=Success, Duration=690.68[ms]
+2023-08-08 18:43:16.861 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetOutput, HowEnded=Success, Duration=995.84[ms]
+2023-08-08 18:43:20.338 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetBestChild
+2023-08-08 18:43:20.482 - INFO - 39614 - azureml.train.automl.run._log_activity:55 - ActivityStarted: GetChildren
+2023-08-08 18:43:20.641 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetChildren, HowEnded=Success, Duration=158.77[ms]
+2023-08-08 18:43:20.719 - INFO - 39614 - azureml.train.automl.run._log_activity:89 - ActivityCompleted: Activity=GetBestChild, HowEnded=Success, Duration=381.05[ms]

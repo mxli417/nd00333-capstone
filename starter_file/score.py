@@ -1,17 +1,22 @@
 import os
 import joblib
-from pathlib import Path
 import pandas as pd
 import json
+import logging
 
 
 def init():
   global model
-  output_path = Path(os.getenv("AZUREML_MODEL_DIR")) / "outputs"
-  assert output_path.exists(), f"Path not found: {output_path.absolute()}"
-  model_path = output_path / "model.joblib"
-  model = joblib.load(model_path)
-  assert model is not None, f"Model not loaded: {model, str(Path(os.getenv("AZUREML_MODEL_DIR")) / "outputs")}"
+  model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'model.joblib')
+  try:
+    print("Loading model from path.")
+    model = joblib.load(model_path)
+    print("Loading successful.")
+  except Exception as e:
+    print(f"exception: {e}")
+    raise
+  
+  assert model is not None, f"Model not loaded: {model}"
 
 def run(raw_data_payload):
   # load data from payload
