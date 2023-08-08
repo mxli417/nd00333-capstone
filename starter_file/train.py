@@ -5,9 +5,8 @@ import pandas as pd
 import numpy as np
 
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
@@ -18,6 +17,8 @@ dataset_name = "heart_failure_kaggle"
 target_column = "DEATH_EVENT"
 primary_metric_name = "accuracy"
 
+# create the outputs folder
+os.makedirs("./outputs", exist_ok=True)
 
 def main():
     # Add arguments to script
@@ -46,13 +47,16 @@ def main():
         n_estimators=args.n_estimators,
     ).fit(X_train, y_train)
 
+    # record the classification report
+    y_pred = model.predict(X_test)
+    run.log(classification_report(y_test, y_pred))
+
     # record the accuracy
     accuracy = model.score(X_test, y_test)
     run.log(primary_metric_name, np.float(accuracy))
 
     # dump the model
-    os.makedirs("outputs", exist_ok=True)
-    joblib.dump(value=model, './outputs/model.joblib')
+    joblib.dump(model, './outputs/model.joblib')
 
 
 if __name__ == '__main__':
