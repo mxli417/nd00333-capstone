@@ -149,12 +149,14 @@ We deployed the best model from the HyperDrive experiment as a web service endpo
   'sex': 1,
   'smoking': 1,
 ```
+Screenshot of the successful best model registration:
+![Hyperdrive model deployment registration](../screenshots/Service_ModelRegistering.png)
 
 Screenshot of the successful deployment loggings:
-![Hyperdrive model details](../screenshots/Service_deployment_success_log.png)
+![Hyperdrive model deployment loggings](../screenshots/Service_deployment_success_log.png)
 
 Screenshot of the deployed model test:
-![Hyperdrive model details](../screenshots/Service_TestEndpoint.png)
+![Hyperdrive model deployment test](../screenshots/Service_TestEndpoint.png)
 
 Screenshot of the healthy endpoint: 
 ![Service healthy endpoint](../screenshots/Service_Healthy_Endpoint.png)
