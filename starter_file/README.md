@@ -162,7 +162,7 @@ Screenshot of the healthy endpoint:
 ![Service healthy endpoint](../screenshots/Service_Healthy_Endpoint.png)
 
 ## Screen Recording
-https://youtu.be/R8emij85s8g
+https://youtu.be/co18TC7lnLk
 
 ## Additionl Screenshots
 
