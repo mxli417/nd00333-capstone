@@ -53,7 +53,7 @@ def setup_instrumentation(automl_run_id):
     return logger
 
 
-automl_run_id = 'AutoML_56298064-a8a3-4016-9d94-b5507dfcf65c_51'
+automl_run_id = 'AutoML_1bf9c79d-ba88-49bd-9ceb-d358da8460e4_86'
 logger = setup_instrumentation(automl_run_id)
 
 
@@ -189,9 +189,9 @@ def generate_data_transformation_config():
     '''
     from sklearn.pipeline import FeatureUnion
     
-    column_group_1 = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking']
-    
     column_group_0 = [['age'], ['creatinine_phosphokinase'], ['ejection_fraction'], ['platelets'], ['serum_creatinine'], ['serum_sodium'], ['time']]
+    
+    column_group_1 = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking']
     
     feature_union = FeatureUnion([
         ('mapper_0', get_mapper_0(column_group_0)),
@@ -212,7 +212,7 @@ def generate_preprocessor_config_0():
     
     preproc = Normalizer(
         copy=True,
-        norm='l1'
+        norm='l2'
     )
     
     return preproc
@@ -226,28 +226,28 @@ def generate_algorithm_config_0():
         booster='gbtree',
         colsample_bylevel=1,
         colsample_bynode=1,
-        colsample_bytree=1,
-        eta=0.5,
-        gamma=0.01,
+        colsample_bytree=0.9,
+        eta=0.3,
+        gamma=0,
         gpu_id=-1,
         importance_type='gain',
         interaction_constraints='',
-        learning_rate=0.5,
+        learning_rate=0.300000012,
         max_delta_step=0,
-        max_depth=7,
-        max_leaves=15,
+        max_depth=6,
+        max_leaves=0,
         min_child_weight=1,
         missing=numpy.nan,
         monotone_constraints='()',
-        n_estimators=100,
+        n_estimators=50,
         n_jobs=1,
         num_parallel_tree=1,
         objective='reg:logistic',
         random_state=0,
-        reg_alpha=0.5208333333333334,
-        reg_lambda=2.291666666666667,
+        reg_alpha=1.7708333333333335,
+        reg_lambda=1.7708333333333335,
         scale_pos_weight=1,
-        subsample=1,
+        subsample=0.9,
         tree_method='auto',
         use_label_encoder=True,
         validate_parameters=1,
@@ -277,26 +277,26 @@ def generate_algorithm_config_1():
         booster='gbtree',
         colsample_bylevel=1,
         colsample_bynode=1,
-        colsample_bytree=0.5,
-        eta=0.05,
+        colsample_bytree=0.6,
+        eta=0.5,
         gamma=0.01,
         gpu_id=-1,
         importance_type='gain',
         interaction_constraints='',
-        learning_rate=0.0500000007,
+        learning_rate=0.5,
         max_delta_step=0,
         max_depth=6,
-        max_leaves=3,
+        max_leaves=0,
         min_child_weight=1,
         missing=numpy.nan,
         monotone_constraints='()',
-        n_estimators=600,
+        n_estimators=50,
         n_jobs=1,
         num_parallel_tree=1,
         objective='reg:logistic',
         random_state=0,
-        reg_alpha=1.6666666666666667,
-        reg_lambda=2.0833333333333335,
+        reg_alpha=0,
+        reg_lambda=0.3125,
         scale_pos_weight=1,
         subsample=1,
         tree_method='auto',
@@ -330,26 +330,26 @@ def generate_algorithm_config_2():
         colsample_bynode=1,
         colsample_bytree=1,
         eta=0.4,
-        gamma=0.1,
+        gamma=0,
         gpu_id=-1,
         importance_type='gain',
         interaction_constraints='',
         learning_rate=0.400000006,
         max_delta_step=0,
-        max_depth=10,
-        max_leaves=127,
+        max_depth=9,
+        max_leaves=255,
         min_child_weight=1,
         missing=numpy.nan,
         monotone_constraints='()',
-        n_estimators=50,
+        n_estimators=100,
         n_jobs=1,
         num_parallel_tree=1,
         objective='reg:logistic',
         random_state=0,
-        reg_alpha=0.8333333333333334,
-        reg_lambda=1.1458333333333335,
+        reg_alpha=1.9791666666666667,
+        reg_lambda=0.625,
         scale_pos_weight=1,
-        subsample=0.8,
+        subsample=0.5,
         tree_method='auto',
         use_label_encoder=True,
         validate_parameters=1,
@@ -361,44 +361,51 @@ def generate_algorithm_config_2():
     
     
 def generate_preprocessor_config_3():
-    from sklearn.preprocessing import RobustScaler
+    from sklearn.preprocessing import Normalizer
     
-    preproc = RobustScaler(
+    preproc = Normalizer(
         copy=True,
-        quantile_range=[25, 75],
-        with_centering=False,
-        with_scaling=False
+        norm='l1'
     )
     
     return preproc
     
     
 def generate_algorithm_config_3():
-    from sklearn.ensemble import GradientBoostingClassifier
+    from xgboost.sklearn import XGBClassifier
     
-    algorithm = GradientBoostingClassifier(
-        ccp_alpha=0.0,
-        criterion='friedman_mse',
-        init=None,
-        learning_rate=0.1,
-        loss='deviance',
-        max_depth=1,
-        max_features=0.6,
-        max_leaf_nodes=None,
-        min_impurity_decrease=0.0,
-        min_impurity_split=None,
-        min_samples_leaf=0.13894736842105262,
-        min_samples_split=0.29105263157894734,
-        min_weight_fraction_leaf=0.0,
-        n_estimators=50,
-        n_iter_no_change=None,
-        presort='deprecated',
-        random_state=None,
-        subsample=0.7631578947368421,
-        tol=0.0001,
-        validation_fraction=0.1,
-        verbose=0,
-        warm_start=False
+    algorithm = XGBClassifier(
+        base_score=0.5,
+        booster='gbtree',
+        colsample_bylevel=1,
+        colsample_bynode=1,
+        colsample_bytree=0.8,
+        eta=0.3,
+        gamma=0,
+        gpu_id=-1,
+        importance_type='gain',
+        interaction_constraints='',
+        learning_rate=0.300000012,
+        max_delta_step=0,
+        max_depth=6,
+        max_leaves=31,
+        min_child_weight=1,
+        missing=numpy.nan,
+        monotone_constraints='()',
+        n_estimators=100,
+        n_jobs=1,
+        num_parallel_tree=1,
+        objective='reg:logistic',
+        random_state=0,
+        reg_alpha=0.8333333333333334,
+        reg_lambda=0,
+        scale_pos_weight=1,
+        subsample=0.6,
+        tree_method='auto',
+        use_label_encoder=True,
+        validate_parameters=1,
+        verbose=-10,
+        verbosity=0
     )
     
     return algorithm
@@ -416,52 +423,41 @@ def generate_preprocessor_config_4():
     
     
 def generate_algorithm_config_4():
-    from xgboost.sklearn import XGBClassifier
+    from lightgbm.sklearn import LGBMClassifier
     
-    algorithm = XGBClassifier(
-        base_score=0.5,
-        booster='gbtree',
-        colsample_bylevel=1,
-        colsample_bynode=1,
-        colsample_bytree=1,
-        eta=0.3,
-        gamma=0,
-        gpu_id=-1,
-        importance_type='gain',
-        interaction_constraints='',
-        learning_rate=0.300000012,
-        max_delta_step=0,
-        max_depth=10,
-        max_leaves=3,
-        min_child_weight=1,
-        missing=numpy.nan,
-        monotone_constraints='()',
-        n_estimators=100,
+    algorithm = LGBMClassifier(
+        boosting_type='gbdt',
+        class_weight=None,
+        colsample_bytree=0.7922222222222222,
+        importance_type='split',
+        learning_rate=0.03158578947368421,
+        max_bin=140,
+        max_depth=7,
+        min_child_samples=5,
+        min_child_weight=4,
+        min_split_gain=0.3157894736842105,
+        n_estimators=200,
         n_jobs=1,
-        num_parallel_tree=1,
-        objective='reg:logistic',
-        random_state=0,
-        reg_alpha=0,
-        reg_lambda=2.1875,
-        scale_pos_weight=1,
-        subsample=0.5,
-        tree_method='auto',
-        use_label_encoder=True,
-        validate_parameters=1,
-        verbose=-10,
-        verbosity=0
+        num_leaves=71,
+        objective=None,
+        random_state=None,
+        reg_alpha=0.7368421052631579,
+        reg_lambda=0.5789473684210527,
+        silent=True,
+        subsample=0.6931578947368422,
+        subsample_for_bin=200000,
+        subsample_freq=0,
+        verbose=-10
     )
     
     return algorithm
     
     
 def generate_preprocessor_config_5():
-    from sklearn.preprocessing import StandardScaler
+    from sklearn.preprocessing import MaxAbsScaler
     
-    preproc = StandardScaler(
-        copy=True,
-        with_mean=False,
-        with_std=False
+    preproc = MaxAbsScaler(
+        copy=True
     )
     
     return preproc
@@ -471,25 +467,24 @@ def generate_algorithm_config_5():
     from lightgbm.sklearn import LGBMClassifier
     
     algorithm = LGBMClassifier(
-        boosting_type='goss',
+        boosting_type='gbdt',
         class_weight=None,
-        colsample_bytree=0.99,
+        colsample_bytree=1.0,
         importance_type='split',
-        learning_rate=0.04211105263157895,
-        max_bin=110,
-        max_depth=4,
-        min_child_samples=24,
-        min_child_weight=4,
-        min_split_gain=1,
-        n_estimators=50,
+        learning_rate=0.1,
+        max_depth=-1,
+        min_child_samples=20,
+        min_child_weight=0.001,
+        min_split_gain=0.0,
+        n_estimators=100,
         n_jobs=1,
-        num_leaves=197,
+        num_leaves=31,
         objective=None,
         random_state=None,
-        reg_alpha=1,
-        reg_lambda=0.894736842105263,
+        reg_alpha=0.0,
+        reg_lambda=0.0,
         silent=True,
-        subsample=1,
+        subsample=1.0,
         subsample_for_bin=200000,
         subsample_freq=0,
         verbose=-10
@@ -510,23 +505,105 @@ def generate_preprocessor_config_6():
     
     
 def generate_algorithm_config_6():
+    from lightgbm.sklearn import LGBMClassifier
+    
+    algorithm = LGBMClassifier(
+        boosting_type='goss',
+        class_weight=None,
+        colsample_bytree=0.3966666666666666,
+        importance_type='split',
+        learning_rate=0.07368684210526316,
+        max_bin=300,
+        max_depth=3,
+        min_child_samples=13,
+        min_child_weight=5,
+        min_split_gain=0.3157894736842105,
+        n_estimators=50,
+        n_jobs=1,
+        num_leaves=239,
+        objective=None,
+        random_state=None,
+        reg_alpha=0.05263157894736842,
+        reg_lambda=0.8421052631578947,
+        silent=True,
+        subsample=1,
+        subsample_for_bin=200000,
+        subsample_freq=0,
+        verbose=-10
+    )
+    
+    return algorithm
+    
+    
+def generate_preprocessor_config_7():
+    from sklearn.preprocessing import StandardScaler
+    
+    preproc = StandardScaler(
+        copy=True,
+        with_mean=True,
+        with_std=True
+    )
+    
+    return preproc
+    
+    
+def generate_algorithm_config_7():
     from sklearn.ensemble import RandomForestClassifier
     
     algorithm = RandomForestClassifier(
         bootstrap=True,
         ccp_alpha=0.0,
-        class_weight='balanced',
+        class_weight=None,
         criterion='gini',
         max_depth=None,
-        max_features='sqrt',
+        max_features=0.5,
         max_leaf_nodes=None,
         max_samples=None,
         min_impurity_decrease=0.0,
         min_impurity_split=None,
         min_samples_leaf=0.01,
-        min_samples_split=0.33789473684210525,
+        min_samples_split=0.056842105263157895,
         min_weight_fraction_leaf=0.0,
         n_estimators=200,
+        n_jobs=1,
+        oob_score=True,
+        random_state=None,
+        verbose=0,
+        warm_start=False
+    )
+    
+    return algorithm
+    
+    
+def generate_preprocessor_config_8():
+    from sklearn.preprocessing import MinMaxScaler
+    
+    preproc = MinMaxScaler(
+        copy=True,
+        feature_range=(0, 1)
+    )
+    
+    return preproc
+    
+    
+def generate_algorithm_config_8():
+    from sklearn.ensemble import RandomForestClassifier
+    
+    algorithm = RandomForestClassifier(
+        bootstrap=True,
+        ccp_alpha=0.0,
+        class_weight=None,
+        criterion='gini',
+        max_depth=None,
+        max_features=0.8,
+        max_leaf_nodes=None,
+        max_samples=None,
+        min_impurity_decrease=0.0,
+        min_impurity_split=None,
+        min_samples_leaf=0.035789473684210524,
+        min_samples_split=0.01,
+        min_weight_fraction_leaf=0.0,
+        n_estimators=10,
         n_jobs=1,
         oob_score=False,
         random_state=None,
@@ -557,6 +634,8 @@ def generate_algorithm_config():
     pipeline_4 = Pipeline(steps=[('preproc', generate_preprocessor_config_4()), ('model', generate_algorithm_config_4())])
     pipeline_5 = Pipeline(steps=[('preproc', generate_preprocessor_config_5()), ('model', generate_algorithm_config_5())])
     pipeline_6 = Pipeline(steps=[('preproc', generate_preprocessor_config_6()), ('model', generate_algorithm_config_6())])
+    pipeline_7 = Pipeline(steps=[('preproc', generate_preprocessor_config_7()), ('model', generate_algorithm_config_7())])
+    pipeline_8 = Pipeline(steps=[('preproc', generate_preprocessor_config_8()), ('model', generate_algorithm_config_8())])
     algorithm = PreFittedSoftVotingClassifier(
         classification_labels=numpy.array([0, 1]),
         estimators=[
@@ -567,9 +646,11 @@ def generate_algorithm_config():
             ('model_4', pipeline_4),
             ('model_5', pipeline_5),
             ('model_6', pipeline_6),
+            ('model_7', pipeline_7),
+            ('model_8', pipeline_8),
         ],
         flatten_transform=None,
-        weights=[0.125, 0.125, 0.125, 0.25, 0.125, 0.125, 0.125]
+        weights=[0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111]
     )
     
     return algorithm
@@ -628,45 +709,45 @@ def calculate_metrics(model, X, y, sample_weights, X_test, y_test, cv_splits=Non
 def get_metrics_names():
     
     metrics_names = [
-        'f1_score_micro',
-        'f1_score_macro',
-        'balanced_accuracy',
-        'precision_score_weighted',
-        'f1_score_classwise',
-        'weighted_accuracy',
-        'recall_score_micro',
-        'average_precision_score_micro',
-        'norm_macro_recall',
-        'recall_score_binary',
-        'iou_macro',
-        'f1_score_weighted',
-        'accuracy_table',
-        'confusion_matrix',
-        'recall_score_weighted',
-        'accuracy',
-        'precision_score_micro',
-        'precision_score_binary',
-        'iou_classwise',
-        'average_precision_score_binary',
-        'AUC_micro',
-        'iou',
-        'AUC_binary',
-        'iou_micro',
-        'log_loss',
-        'average_precision_score_weighted',
-        'AUC_classwise',
-        'AUC_macro',
-        'matthews_correlation',
-        'recall_score_classwise',
-        'recall_score_macro',
         'classification_report',
-        'iou_weighted',
-        'f1_score_binary',
-        'average_precision_score_classwise',
+        'iou_micro',
+        'recall_score_macro',
+        'average_precision_score_micro',
+        'log_loss',
+        'recall_score_weighted',
         'precision_score_classwise',
-        'AUC_weighted',
+        'balanced_accuracy',
+        'average_precision_score_binary',
+        'recall_score_classwise',
+        'recall_score_binary',
+        'f1_score_binary',
         'precision_score_macro',
+        'iou_macro',
+        'AUC_binary',
+        'AUC_macro',
+        'f1_score_classwise',
+        'recall_score_micro',
+        'matthews_correlation',
+        'iou',
+        'weighted_accuracy',
+        'iou_classwise',
+        'precision_score_binary',
+        'accuracy_table',
+        'accuracy',
+        'AUC_classwise',
+        'average_precision_score_classwise',
+        'AUC_weighted',
+        'f1_score_micro',
+        'AUC_micro',
+        'f1_score_weighted',
+        'norm_macro_recall',
+        'precision_score_weighted',
+        'precision_score_micro',
+        'average_precision_score_weighted',
+        'iou_weighted',
         'average_precision_score_macro',
+        'f1_score_macro',
+        'confusion_matrix',
     ]
     return metrics_names
 
@@ -674,45 +755,45 @@ def get_metrics_names():
 def get_metrics_log_methods():
     
     metrics_log_methods = {
-        'f1_score_micro': 'log',
-        'f1_score_macro': 'log',
-        'balanced_accuracy': 'log',
-        'precision_score_weighted': 'log',
-        'f1_score_classwise': 'Skip',
-        'weighted_accuracy': 'log',
-        'recall_score_micro': 'log',
-        'average_precision_score_micro': 'log',
-        'norm_macro_recall': 'log',
-        'recall_score_binary': 'log',
-        'iou_macro': 'Skip',
-        'f1_score_weighted': 'log',
-        'accuracy_table': 'log_accuracy_table',
-        'confusion_matrix': 'log_confusion_matrix',
-        'recall_score_weighted': 'log',
-        'accuracy': 'log',
-        'precision_score_micro': 'log',
-        'precision_score_binary': 'log',
-        'iou_classwise': 'Skip',
-        'average_precision_score_binary': 'log',
-        'AUC_micro': 'log',
-        'iou': 'Skip',
-        'AUC_binary': 'log',
-        'iou_micro': 'Skip',
-        'log_loss': 'log',
-        'average_precision_score_weighted': 'log',
-        'AUC_classwise': 'Skip',
-        'AUC_macro': 'log',
-        'matthews_correlation': 'log',
-        'recall_score_classwise': 'Skip',
-        'recall_score_macro': 'log',
         'classification_report': 'Skip',
-        'iou_weighted': 'Skip',
-        'f1_score_binary': 'log',
-        'average_precision_score_classwise': 'Skip',
+        'iou_micro': 'Skip',
+        'recall_score_macro': 'log',
+        'average_precision_score_micro': 'log',
+        'log_loss': 'log',
+        'recall_score_weighted': 'log',
         'precision_score_classwise': 'Skip',
-        'AUC_weighted': 'log',
+        'balanced_accuracy': 'log',
+        'average_precision_score_binary': 'log',
+        'recall_score_classwise': 'Skip',
+        'recall_score_binary': 'log',
+        'f1_score_binary': 'log',
         'precision_score_macro': 'log',
+        'iou_macro': 'Skip',
+        'AUC_binary': 'log',
+        'AUC_macro': 'log',
+        'f1_score_classwise': 'Skip',
+        'recall_score_micro': 'log',
+        'matthews_correlation': 'log',
+        'iou': 'Skip',
+        'weighted_accuracy': 'log',
+        'iou_classwise': 'Skip',
+        'precision_score_binary': 'log',
+        'accuracy_table': 'log_accuracy_table',
+        'accuracy': 'log',
+        'AUC_classwise': 'Skip',
+        'average_precision_score_classwise': 'Skip',
+        'AUC_weighted': 'log',
+        'f1_score_micro': 'log',
+        'AUC_micro': 'log',
+        'f1_score_weighted': 'log',
+        'norm_macro_recall': 'log',
+        'precision_score_weighted': 'log',
+        'precision_score_micro': 'log',
+        'average_precision_score_weighted': 'log',
+        'iou_weighted': 'Skip',
         'average_precision_score_macro': 'log',
+        'f1_score_macro': 'log',
+        'confusion_matrix': 'log_confusion_matrix',
     }
     return metrics_log_methods
 
@@ -769,7 +850,7 @@ def main(training_dataset_id=None):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--training_dataset_id', type=str, default='643eec13-d3a2-4a61-a345-36b0c50fea42',     help='Default training dataset id is populated from the parent run')
+    parser.add_argument('--training_dataset_id', type=str, default='791d29a5-0e01-469f-addb-b112bc99ccab',     help='Default training dataset id is populated from the parent run')
     args = parser.parse_args()
     
     try:
