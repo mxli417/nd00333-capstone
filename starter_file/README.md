@@ -44,46 +44,39 @@ The AutoML-approach aims towards automating the complete hand-crafted and thus b
 
 
 ### Results
-The best Auto ML experiment model is a Voting Ensemble, which consists of several scaling steps ad LightGBMClassifier, an XGBoostClassifier and a Rabndom Forest classifier. Here are the details on the ensemble:
+The best Auto ML experiment model is a Voting Ensemble, which consists of several scaling steps ad LightGBMClassifier, an XGBoostClassifier and a Random Forest classifier. Here are the details on the ensemble:
 
 ```
-Overview over the best model and its details: 
-
-Pipeline(memory=None,
-
-steps=[('datatransformer',
-        DataTransformer(enable_dnn=False, enable_feature_sweeping=True, feature_sweeping_config={}, feature_sweeping_timeout=86400, featurization_config=None, force_text_dnn=False, is_cross_validation=True, is_onnx_compatible=False, observer=None, task='classification', working_dir='/mnt/batch/tasks/shared/LS_root/mount...
-
-        PreFittedSoftVotingClassifier(classification_labels=array([0, 1]), estimators=[
-        
-        ('32', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l1')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bylevel=1, colsample_bytree=1, eta=0.5, gamma=0.01, max_depth=7, max_leaves=15, n_estimators=100, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=0.5208333333333334, reg_lambda=2.291666666666667, subsample=1, tree_method='auto'))], verbose=False)), 
-        
-        ('36', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l2')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=0.5, eta=0.05, gamma=0.01, max_depth=6, max_leaves=3, n_estimators=600, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=1.6666666666666667, reg_lambda=2.0833333333333335, subsample=1, tree_method='auto'))], verbose=False)), 
-        
-        ('27', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l1')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=1, eta=0.4, gamma=0.1, max_depth=10, max_leaves=127, n_estimators=50, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=0.8333333333333334, reg_lambda=1.1458333333333335, subsample=0.8, tree_method='auto'))], verbose=False)), 
-        
-        ('41', Pipeline(memory=None, steps=[('robustscaler', RobustScaler(copy=True, quantile_range=[25, 75], with_centering=False, with_scaling=False)), ('gradientboostingclassifier', GradientBoostingClassifier(ccp_alpha=0.0, criterion='friedman_mse', init=None, learning_rate=0.1, loss='deviance', max_depth=1, max_features=0.6, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.13894736842105262, min_samples_split=0.29105263157894734, min_weight_fraction_leaf=0.0, n_estimators=50, n_iter_no_change=None, presort='deprecated', random_state=None, subsample=0.7631578947368421, tol=0.0001, validation_fraction=0.1, verbose=0, warm_start=False))], verbose=False)), 
-        
-        ('34', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l1')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=1, eta=0.3, gamma=0, max_depth=10, max_leaves=3, n_estimators=100, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=0, reg_lambda=2.1875, subsample=0.5, tree_method='auto'))], verbose=False)), 
-        
-        ('42', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=False, with_std=False)), ('lightgbmclassifier', LightGBMClassifier(boosting_type='goss', colsample_bytree=0.99, learning_rate=0.04211105263157895, max_bin=110, max_depth=4, min_child_weight=4, min_data_in_leaf=0.07931241379310346, min_split_gain=1, n_estimators=50, n_jobs=1, num_leaves=197, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=1, reg_lambda=0.894736842105263, subsample=1))], verbose=False)), ('11', Pipeline(memory=None, steps=[('minmaxscaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('randomforestclassifier', RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight='balanced', criterion='gini', max_depth=None, max_features='sqrt', max_leaf_nodes=None, max_samples=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.01, min_samples_split=0.33789473684210525, min_weight_fraction_leaf=0.0, n_estimators=200, n_jobs=1, oob_score=False, random_state=None, verbose=0, warm_start=False))], verbose=False))], flatten_transform=None, weights=[0.125, 0.125, 0.125, 0.25, 0.125, 0.125, 0.125]))],verbose=False)
+Overview over the best model and its details: Pipeline(memory=None,
+         steps=[('datatransformer',
+                 DataTransformer(enable_dnn=False, enable_feature_sweeping=True, feature_sweeping_config={}, feature_sweeping_timeout=86400, featurization_config=None, force_text_dnn=False, is_cross_validation=True, is_onnx_compatible=False, observer=None, task='classification', working_dir='/mnt/batch/tasks/shared/LS_root/mount...
+                 PreFittedSoftVotingClassifier(classification_labels=array([0, 1]), estimators=[('65', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l2')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=0.9, eta=0.3, gamma=0, max_depth=6, max_leaves=0, n_estimators=50, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=1.7708333333333335, reg_lambda=1.7708333333333335, subsample=0.9, tree_method='auto'))], verbose=False)), ('48', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l2')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=0.6, eta=0.5, gamma=0.01, max_depth=6, max_leaves=0, n_estimators=50, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=0, reg_lambda=0.3125, subsample=1, tree_method='auto'))], verbose=False)), ('60', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l1')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=1, eta=0.4, gamma=0, max_depth=9, max_leaves=255, n_estimators=100, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=1.9791666666666667, reg_lambda=0.625, subsample=0.5, tree_method='auto'))], verbose=False)), ('64', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l1')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=0.8, eta=0.3, gamma=0, max_depth=6, max_leaves=31, n_estimators=100, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=0.8333333333333334, reg_lambda=0, subsample=0.6, tree_method='auto'))], verbose=False)), ('39', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l1')), ('lightgbmclassifier', LightGBMClassifier(boosting_type='gbdt', colsample_bytree=0.7922222222222222, learning_rate=0.03158578947368421, max_bin=140, max_depth=7, min_child_weight=4, min_data_in_leaf=0.013801724137931036, min_split_gain=0.3157894736842105, n_estimators=200, n_jobs=1, num_leaves=71, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=0.7368421052631579, reg_lambda=0.5789473684210527, subsample=0.6931578947368422))], verbose=False)), ('0', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('lightgbmclassifier', LightGBMClassifier(min_data_in_leaf=20, n_jobs=1, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None))], verbose=False)), ('72', Pipeline(memory=None, steps=[('minmaxscaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('lightgbmclassifier', LightGBMClassifier(boosting_type='goss', colsample_bytree=0.3966666666666666, learning_rate=0.07368684210526316, max_bin=300, max_depth=3, min_child_weight=5, min_data_in_leaf=0.041385172413793116, min_split_gain=0.3157894736842105, n_estimators=50, n_jobs=1, num_leaves=239, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=0.05263157894736842, reg_lambda=0.8421052631578947, subsample=1))], verbose=False)), ('81', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=True, with_std=True)), ('randomforestclassifier', RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None, criterion='gini', max_depth=None, max_features=0.5, max_leaf_nodes=None, max_samples=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.01, min_samples_split=0.056842105263157895, min_weight_fraction_leaf=0.0, n_estimators=200, n_jobs=1, oob_score=True, random_state=None, verbose=0, warm_start=False))], verbose=False)), ('76', Pipeline(memory=None, steps=[('minmaxscaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('randomforestclassifier', RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None, criterion='gini', max_depth=None, max_features=0.8, max_leaf_nodes=None, max_samples=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.035789473684210524, min_samples_split=0.01, min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=1, oob_score=False, random_state=None, verbose=0, warm_start=False))], verbose=False))], flatten_transform=None, weights=[0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111]))],
+         verbose=False)
 ```
 
-The model has an `accuracy` of ~88% 
+The model has an `accuracy` of ~0.89% 
 
-Interestingly, the Auto ML experiment did not reach an accuracy of > 90 %.
+Interestingly, the Auto ML experiment did not reach an accuracy of >90 %.
+
+### Ideas for improvement
+
 Hence, it might be interesting for the future - especially with such a small dataset - to investigate Auto ML [data synthetization approaches](https://ydata.ai/resources/top-5-packages-python-synthetic-data), which could
 boost the accuracy and increase the amount of data to learn form. 
+Additionally, a different metric, maybe taking into account how costly it is to misclassify the patients, might be more suitable for the task at hand and provide additional insights into the models' performance.
 
 Run Details widget output:
 ![Run Details Auto ML](../screenshots/AutoML_RunDetails.png)
 
 Best Run ID and metrics (1-2): 
-![Best Auto ML model Run ID](../screenshots/AutoML_runid_proff.png)
-![Best Auto ML model metrics](../screenshots/AutoML_best_metrics.png)
+![Best Auto ML model Run ID](../screenshots/AutoML_BestModelID_metrics_v1.png)
+![Best Auto ML model metrics](../screenshots/AutoML_BestModelID_metrics_v2.png)
 
-Best model details w. params:
-![Best model with params](../screenshots/AutoML_model_w_params.png)
+Best model details w. params (also check the complete printout above):
+![Best model with params](../screenshots/AutoML_BestModel_Params.png)
+
+Best model registration (1-2):
+![Best model registration (1)](../screenshots/AutoML_BestModelRegister.png)
+![Best model registration (2)](../screenshots/AutoML_BestModelRegister_v2.png)
 
 ## Hyperparameter Tuning
 We use a Gradient Boosting Classifier here, because we are dealing with tabular data and have a binary variable as the target in our classification problem. This is an additive modeling approach, often providing very good performance, a lot of flexibility, can work with categorical and numerical values as-is and naturally handles missing data.
@@ -100,20 +93,19 @@ To progress through the hyperparameter search space (defined on n_estimators and
 To best track our experimentation success, we optimize for the best-possible `accuracy` (primary metric) w.r.t. the classification problem, to most accurately predict the (non-) survival of patient's based on their clinical data.
 
 ### Results
-The best Gradient Boosting Classifier also reaches an accuracy of ~88% with its hyperparameters `learning_rate`=0.1064 and `n_estimators`=100. 
+The best Gradient Boosting Classifier also reaches an accuracy of ~95% with its hyperparameters `learning_rate`=0.1475654756162574 and `n_estimators`=100. 
 
+### Ideas for improvement
 Although the accuracy seems competitive w.r.t. the Auto ML approach, it might be beneficial to provide other `subsample` - parameter values, which would allow the model's individual learner's to choose different samples from the dataset during training. Besides, a different metric, maybe taking into account how costly it is to misclassify the patients might be more suitable for the task at hand and provide additional insights into the models' performance.
 
-Hyperdrive Run Details output (1-3):
-![Run Details HyperDrive](../screenshots/HyperDriveRunDetails.png)
-![Run Details HyperDrive](../screenshots/HyperDriveRunDetails_v2.png)
-![Run Details HyperDrive](../screenshots/HyperDriveRunDetails_v3.png)
+Hyperdrive Run Details output:
+![Run Details HyperDrive](../screenshots/HyperDrive_RunDetails.png)
 
-Hyperdrive model best run id and metrics:
-![Hyperdrive model best run id](../screenshots/HyperDrive_best_model_metric_and_id.png)
+Hyperdrive model best run id and metrics as well as the best model parameters:
+![Hyperdrive best model best run id](../screenshots/HyperDrive_BestModelID_metrics.png)
 
-Hyperdrive best model details w. params:
-![Hyperdrive model details](../screenshots/HyperDrive_bestModel_Hyperparams.png)
+Hyperdrive best model registration:
+![Hyperdrive best model registration](../screenshots/HyperDrive_RegisterBestModel.png)
 
 
 ## Model Deployment
@@ -121,24 +113,55 @@ We deployed the best model from the HyperDrive experiment as a web service endpo
 
 
 ```
-{"data": [
-    {"age": 61.0, "anaemia": 0, "creatinine_phosphokinase": 582, "diabetes": 1, "ejection_fraction": 38, "high_blood_pressure": 0, "platelets": 147000.0, "serum_creatinine": 1.2, "serum_sodium": 141, "sex": 1, "smoking": 0, "time": 237}, 
-    {"age": 66.0, "anaemia": 1, "creatinine_phosphokinase": 68, "diabetes": 1, "ejection_fraction": 38, "high_blood_pressure": 1, "platelets": 162000.0, "serum_creatinine": 1.0, "serum_sodium": 136, "sex": 0, "smoking": 0, "time": 95}, 
-    {"age": 70.0, "anaemia": 0, "creatinine_phosphokinase": 212, "diabetes": 1, "ejection_fraction": 17, "high_blood_pressure": 1, "platelets": 389000.0, "serum_creatinine": 1.0, "serum_sodium": 136, "sex": 1, "smoking": 1, "time": 188}
-    ]
-}
+[{'age': 90.0,
+  'anaemia': 1,
+  'creatinine_phosphokinase': 47,
+  'diabetes': 0,
+  'ejection_fraction': 40,
+  'high_blood_pressure': 1,
+  'platelets': 204000.0,
+  'serum_creatinine': 2.1,
+  'serum_sodium': 132,
+  'sex': 1,
+  'smoking': 1,
+  'time': 8},
+ {'age': 73.0,
+  'anaemia': 1,
+  'creatinine_phosphokinase': 231,
+  'diabetes': 1,
+  'ejection_fraction': 30,
+  'high_blood_pressure': 0,
+  'platelets': 160000.0,
+  'serum_creatinine': 1.18,
+  'serum_sodium': 142,
+  'sex': 1,
+  'smoking': 1,
+  'time': 180},
+ {'age': 50.0,
+  'anaemia': 0,
+  'creatinine_phosphokinase': 582,
+  'diabetes': 0,
+  'ejection_fraction': 62,
+  'high_blood_pressure': 1,
+  'platelets': 147000.0,
+  'serum_creatinine': 0.8,
+  'serum_sodium': 140,
+  'sex': 1,
+  'smoking': 1,
 ```
 
 Screenshot of the successful deployment loggings:
-![Hyperdrive model details](../screenshots/Endpoint_deployment_success.png)
+![Hyperdrive model details](../screenshots/Service_deployment_success_log.png)
 
 Screenshot of the deployed model test:
-![Hyperdrive model details](../screenshots/Endpoint_test_success.png)
+![Hyperdrive model details](../screenshots/Service_TestEndpoint.png)
 
 Screenshot of the healthy endpoint: 
-![Hyperdrive model details](../screenshots/Endpoint_service_healthy.png)
-
-
+![Service healthy endpoint](../screenshots/Service_Healthy_Endpoint.png)
 
 ## Screen Recording
 https://youtu.be/R8emij85s8g
+
+## Additionl Screenshots
+
+Feel free to check out the additional screenshots from the last submission under: [previous screenshots](../leg_screen/)
