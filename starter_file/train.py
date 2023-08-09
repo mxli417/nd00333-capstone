@@ -49,7 +49,7 @@ def main():
 
     # record the classification report
     y_pred = model.predict(X_test)
-    run.log(classification_report(y_test, y_pred))
+    run.log("clf_report", classification_report(y_test, y_pred))
 
     # record the accuracy
     accuracy = model.score(X_test, y_test)
