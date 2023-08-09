@@ -13,7 +13,7 @@ from azureml.data.dataset_factory import TabularDatasetFactory
 
 
 # Main variables
-dataset_name = "heart_failure_kaggle_ml"
+dataset_name = "heart_failure_kaggle"
 target_column = "DEATH_EVENT"
 primary_metric_name = "accuracy"
 
